@@ -22,6 +22,7 @@ const AddTodoDrawer = () => {
         <Drawer
             open={open}
             onOpenChange={setOpen}
+            modal={true}
             showSwipeHandle={isMobile}
             swipeDirection={isMobile ? "down" : "right"}
         >
@@ -33,7 +34,7 @@ const AddTodoDrawer = () => {
                 </DrawerHeader>
 
                 <div className="p-4">
-                    <AddTodoForm />
+                    <AddTodoForm onClose={() => setOpen(false)} />
                 </div>
                 
                 <DrawerFooter>

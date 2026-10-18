@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { select_completed_todos, select_uncompleted_todos } from '@/features/todo/todo_selectors'
-import { edit_todo, toggle_todo_state, type ITodo } from '@/features/todo/todo_slice';
+import { delete_todo, toggle_todo_state, type ITodo } from '@/features/todo/todo_slice';
 import { useAppDispatch, useAppSelector } from '@/hooks/store-hooks'
 import { Checkbox } from './ui/checkbox';
 import {
@@ -11,7 +11,7 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from "@/components/ui/empty"
-import { CheckCheckIcon, ListTodoIcon } from 'lucide-react';
+import { CheckCheckIcon, Edit2Icon, ListTodoIcon, Trash2Icon } from 'lucide-react';
 import AddTodoDrawer from './add_todo_drawer';
 import { Button } from './ui/button';
 import EditTodoDrawer from './edit_todo_drawer';
@@ -37,12 +37,25 @@ const TodoList = () => {
                                 <p className="text-sm">{description}</p>
                             </div>
                             
-                            <div className="flex items-center gap-x-1">
-                                <Button 
-                                    variant="ghost" 
-                                    size="sm"
-                                    onClick={() => setOpen(true)}
-                                >Edit</Button>
+                            <div className="flex items-center gap-x-1.5">
+                                <div>
+                                    <Button 
+                                        variant="ghost" 
+                                        size="sm"
+                                        className="px-1.5"
+                                        onClick={() => setOpen(true)}
+                                    >
+                                        <Edit2Icon />
+                                    </Button>
+                                    <Button 
+                                        variant="ghost" 
+                                        size="sm"
+                                        className="px-1.5"
+                                        onClick={() => dispatch(delete_todo(id))}
+                                    >
+                                        <Trash2Icon />
+                                    </Button>
+                                </div>
                                 <Checkbox 
                                     checked={is_completed}
                                     onCheckedChange={() => dispatch(toggle_todo_state(id))}
@@ -80,16 +93,26 @@ const TodoList = () => {
                 
                 <div className="space-y-4">
                     {completed_todos.length ? completed_todos.map(({ id, title, description, is_completed }) => (
-                        <div key={id} className="flex items-center justify-between">
+                        <div key={id} className="flex items-center justify-between opacity-70">
                             <div>
-                                <h3 className="font-medium capitalize">{title}</h3>
-                                <p className="text-sm">{description}</p>
+                                <h3 className="font-medium capitalize line-through">{title}</h3>
+                                <p className="text-sm line-through">{description}</p>
                             </div>
                             
-                            <Checkbox 
-                                checked={is_completed}
-                                onCheckedChange={() => dispatch(toggle_todo_state(id))}
-                            />
+                            <div className="flex items-center gap-x-1.5">
+                                <Button 
+                                    variant="ghost" 
+                                    size="sm"
+                                    className="px-1.5"
+                                    onClick={() => dispatch(delete_todo(id))}
+                                >
+                                    <Trash2Icon />
+                                </Button>
+                                <Checkbox 
+                                    checked={is_completed}
+                                    onCheckedChange={() => dispatch(toggle_todo_state(id))}
+                                />
+                            </div>
                         </div>
                     )) : (
                         <Empty>

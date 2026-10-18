@@ -9,7 +9,7 @@ export const todo_schema = z.object({
     description: z.string({ message: "Description can't be empty" }).min(7, { message: "Fill in description" })
 })
 
-const useAddTodoForm = () => {
+const useAddTodoForm = (closeDrawer: () => void) => {
     const dispatch = useAppDispatch();
     const formik = useFormik({
         initialValues: {
@@ -23,6 +23,7 @@ const useAddTodoForm = () => {
             await new Promise(resolve => setTimeout(() => {resolve("Loading complete!")}, 2000))
             dispatch(add_todo(value))
             resetForm()
+            closeDrawer()
         }
     });
     

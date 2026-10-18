@@ -3,8 +3,12 @@ import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 
-const AddTodoForm = () => {
-  const { formik, can_submit } = useAddTodoForm();
+interface IAddTodoForm {
+  onClose: () => void
+}
+
+const AddTodoForm = ({ onClose }: IAddTodoForm) => {
+  const { formik, can_submit } = useAddTodoForm(onClose);
 
   return (
     <form className="space-y-3" onSubmit={formik.handleSubmit}>
@@ -29,6 +33,7 @@ const AddTodoForm = () => {
       <Button 
         type="submit" 
         disabled={can_submit}
+        is_loading={formik.isSubmitting}
         className="w-full"
       >
         Submit
