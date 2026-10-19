@@ -26,7 +26,7 @@ const TodoList = () => {
     
     return (
         <section className="p-8 space-y-8">
-            <blockquote className="space-y-6">
+            <blockquote className="space-y-6" aria-label="uncompleted_todos">
                 <h4 className="font-black text-sm uppercase">Uncompleted</h4>
 
                 <div className="space-y-4">
@@ -88,7 +88,7 @@ const TodoList = () => {
                 </div>
             </blockquote>
 
-            <blockquote className="space-y-6">
+            <blockquote className="space-y-6" aria-label="completed_todos">
                 <h4 className="font-black text-sm uppercase">Completed</h4>
                 
                 <div className="space-y-4">

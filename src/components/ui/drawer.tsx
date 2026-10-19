@@ -49,14 +49,13 @@ function Drawer({
   )
 }
 
-function DrawerTrigger({ ...props }: DrawerPrimitive.Trigger.Props) {
+function DrawerTrigger({ ...props }: Omit<DrawerPrimitive.Trigger.Props, "ref">) {
   return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />
 }
 
-function DrawerPortal({ ...props }: DrawerPrimitive.Portal.Props) {
+function DrawerPortal({ ...props }: Omit<DrawerPrimitive.Portal.Props, "ref">) {
   return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />
 }
-
 function DrawerClose({ ...props }: DrawerPrimitive.Close.Props) {
   return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />
 }
@@ -64,7 +63,7 @@ function DrawerClose({ ...props }: DrawerPrimitive.Close.Props) {
 function DrawerOverlay({
   className,
   ...props
-}: DrawerPrimitive.Backdrop.Props) {
+}: Omit<DrawerPrimitive.Backdrop.Props, "ref">) {
   return (
     <DrawerPrimitive.Backdrop
       data-slot="drawer-overlay"
@@ -98,7 +97,7 @@ function DrawerContent({
   className,
   children,
   ...props
-}: DrawerPrimitive.Popup.Props) {
+}: Omit<DrawerPrimitive.Popup.Props, "ref">) {
   const { hasSnapPoints, modal, showSwipeHandle, swipeDirection } = useDrawer()
   const swipeAxis =
     swipeDirection === "down" || swipeDirection === "up" ? "y" : "x"

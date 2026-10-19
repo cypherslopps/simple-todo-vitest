@@ -11,11 +11,11 @@ function ToastProvider({ ...props }: ToastPrimitive.Provider.Props) {
   return <ToastPrimitive.Provider {...props} />
 }
 
-function ToastPortal({ ...props }: ToastPrimitive.Portal.Props) {
+function ToastPortal({ ...props }: Omit<ToastPrimitive.Portal.Props, "ref">) {
   return <ToastPrimitive.Portal data-slot="toast-portal" {...props} />
 }
 
-function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
+function ToastViewport({ className, ...props }: Omit<ToastPrimitive.Viewport.Props, "ref">) {
   return (
     <ToastPrimitive.Viewport
       data-slot="toast-viewport"
@@ -28,7 +28,7 @@ function ToastViewport({ className, ...props }: ToastPrimitive.Viewport.Props) {
   )
 }
 
-function Toast({ className, ...props }: ToastPrimitive.Root.Props) {
+function Toast({ className, ...props }: Omit<ToastPrimitive.Root.Props, "ref">) {
   return (
     <ToastPrimitive.Root
       data-slot="toast"
@@ -55,7 +55,7 @@ function Toast({ className, ...props }: ToastPrimitive.Root.Props) {
   )
 }
 
-function ToastContent({ className, ...props }: ToastPrimitive.Content.Props) {
+function ToastContent({ className, ...props }: Omit<ToastPrimitive.Content.Props, "ref">) {
   return (
     <ToastPrimitive.Content
       data-slot="toast-content"
@@ -68,7 +68,7 @@ function ToastContent({ className, ...props }: ToastPrimitive.Content.Props) {
   )
 }
 
-function ToastTitle({ className, ...props }: ToastPrimitive.Title.Props) {
+function ToastTitle({ className, ...props }: Omit<ToastPrimitive.Title.Props, "ref">) {
   return (
     <ToastPrimitive.Title
       data-slot="toast-title"
@@ -81,7 +81,7 @@ function ToastTitle({ className, ...props }: ToastPrimitive.Title.Props) {
 function ToastDescription({
   className,
   ...props
-}: ToastPrimitive.Description.Props) {
+}: Omit<ToastPrimitive.Description.Props, "ref">) {
   return (
     <ToastPrimitive.Description
       data-slot="toast-description"
@@ -95,7 +95,7 @@ function ToastAction({
   className,
   render = <Button variant="outline" size="sm" />,
   ...props
-}: ToastPrimitive.Action.Props) {
+}: Omit<ToastPrimitive.Action.Props, "ref">) {
   return (
     <ToastPrimitive.Action
       data-slot="toast-action"
@@ -111,7 +111,7 @@ function ToastClose({
   children,
   render = <Button variant="ghost" size="icon-sm" />,
   ...props
-}: ToastPrimitive.Close.Props) {
+}: Omit<ToastPrimitive.Close.Props, "ref">) {
   return (
     <ToastPrimitive.Close
       data-slot="toast-close"
